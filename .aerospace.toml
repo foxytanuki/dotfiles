@@ -1,0 +1,112 @@
+config-version = 2
+
+####################################
+# 安定化オプション
+####################################
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+####################################
+# Gaps
+####################################
+[gaps]
+inner.horizontal = 12
+inner.vertical = 12
+outer.left = 12
+outer.right = 12
+outer.top = 12
+outer.bottom = 12
+
+####################################
+# Workspace → Monitor
+# 外部を macOS 側で Main にすると
+# workspace 1 が外部に出る
+####################################
+[workspace-to-monitor-force-assignment]
+1 = "main"
+2 = "built-in"
+3 = "built-in"
+4 = "built-in"
+5 = "built-in"
+
+####################################
+# アプリ自動配置（最小限）
+# Arcは自動移動させない（事故防止）
+# → ブラウザはどのワークスペースでも使うため、固定するとリンクを開くたびに飛ばされて作業が中断される
+####################################
+[[on-window-detected]]
+if.app-id = "com.mitchellh.ghostty"
+run = "move-node-to-workspace 1"
+
+[[on-window-detected]]
+if.app-id = "com.todesktop.230313mzl4w4u92" # Cursor
+run = "move-node-to-workspace 1"
+
+[[on-window-detected]]
+if.app-id = "notion.id"
+run = "move-node-to-workspace 2"
+
+[[on-window-detected]]
+if.app-id = "ru.keepcoder.Telegram"
+run = "move-node-to-workspace 2"
+
+[[on-window-detected]]
+if.app-id = "com.hnc.Discord"
+run = "move-node-to-workspace 2"
+
+
+####################################
+# Main mode
+####################################
+[mode.main.binding]
+
+alt-p = "workspace prev"
+alt-n = "workspace next"
+
+alt-1 = "workspace 1"
+alt-2 = "workspace 2"
+alt-3 = "workspace 3"
+alt-4 = "workspace 4"
+alt-5 = "workspace 5"
+
+alt-shift-1 = "move-node-to-workspace 1"
+alt-shift-2 = "move-node-to-workspace 2"
+alt-shift-3 = "move-node-to-workspace 3"
+alt-shift-4 = "move-node-to-workspace 4"
+alt-shift-5 = "move-node-to-workspace 5"
+
+ctrl-h = "focus left"
+ctrl-j = "focus down"
+ctrl-k = "focus up"
+ctrl-l = "focus right"
+
+ctrl-shift-h = "move left"
+ctrl-shift-l = "move right"
+ctrl-shift-j = "move down"
+ctrl-shift-k = "move up"
+
+# reset layout
+alt-enter = [
+  "layout tiles",
+  "balance-sizes"
+]
+
+# float layout
+alt-backspace = "layout floating tiling"
+
+####################################
+# Resize mode
+####################################
+
+alt-r = "mode resize"
+# 1:3レイアウト（まず均等化してから一番左を縮小）
+# focus leftを複数回実行して確実に一番左へ
+alt-shift-r = ['balance-sizes', 'focus left', 'focus left', 'focus left', 'focus left', 'resize smart -800']
+
+[mode.resize.binding]
+h = "resize smart -60"
+l = "resize smart +60"
+j = "resize smart-opposite -60"
+k = "resize smart-opposite +60"
+esc = "mode main"
+enter = "mode main"
