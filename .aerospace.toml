@@ -35,7 +35,7 @@ outer.bottom = 12
 # → ブラウザはどのワークスペースでも使うため、固定するとリンクを開くたびに飛ばされて作業が中断される
 ####################################
 [[on-window-detected]]
-if.app-id = "com.mitchellh.ghostty"
+if.app-id = "org.tabby"
 run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
