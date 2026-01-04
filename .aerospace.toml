@@ -39,6 +39,10 @@ if.app-id = "org.tabby"
 run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
+if.app-id = "com.github.wez.wezterm"
+run = "move-node-to-workspace 1"
+
+[[on-window-detected]]
 if.app-id = "com.todesktop.230313mzl4w4u92" # Cursor
 run = "move-node-to-workspace 1"
 
